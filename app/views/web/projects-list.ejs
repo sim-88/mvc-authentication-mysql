@@ -1,0 +1,182 @@
+<%- contentFor('css_page') %>
+    <!-- Responsive datatable examples -->
+    <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <%- contentFor('body') %>
+        <div class="main-content">
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                <h4 class="mb-0 font-size-18">Projects List</h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Projects</a></li>
+                                        <li class="breadcrumb-item active">Projects List</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row mb-2">
+                                        <div class="col-sm" id="searchBoxPlaceholder">
+                                            <div class="search-box me-2 d-inline-block">
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control" autocomplete="off"
+                                                        id="searchTableList" placeholder="Search...">
+                                                    <i class="bx bx-search-alt search-icon"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end col -->
+                                        <div class="col-sm-auto">
+                                            <div class="text-sm-end">
+                                                <button onclick="window.location.href='/projects-create'"
+                                                    class="btn btn-success btn-rounded" id="addProject-btn"><i
+                                                        class="mdi mdi-plus me-1"></i> Add New Project</button>
+                                            </div>
+                                        </div>
+                                        <!-- end col -->
+                                    </div>
+                                    <!-- end row -->
+
+                                    <div class="">
+                                        <div class="table-responsive">
+                                            <table
+                                                class="table project-list-table align-middle table-nowrap dt-responsive nowrap w-100 table-borderless"
+                                                id="project-list">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th scope="col" style="width: 60px">#</th>
+                                                        <th scope="col">Project</th>
+                                                        <th scope="col">Due Date</th>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Team</th>
+                                                        <th scope="col">Action</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card -->
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="removeItemModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-body px-4 py-5 text-center">
+                            <button type="button" class="btn-close position-absolute end-0 top-0 m-3"
+                                data-bs-dismiss="modal" aria-label="Close"></button>
+                            <div class="avatar-sm mb-4 mx-auto">
+                                <div class="avatar-title bg-primary text-primary bg-opacity-10 font-size-20 rounded-3">
+                                    <i class="mdi mdi-trash-can-outline"></i>
+                                </div>
+                            </div>
+                            <p class="text-muted font-size-16 mb-4">Are you sure you want to remove this project?</p>
+                            <div class="hstack gap-2 justify-content-center mb-0">
+                                <button type="button" class="btn btn-danger" id="remove-item">Remove Now</button>
+                                <button type="button" class="btn btn-secondary" id="close-removeProjectModal"
+                                    data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end removeItemModal -->
+            <!-- Edit Project Modal -->
+            <div class="modal fade" id="editProjectModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body px-4 py-5">
+                            <button type="button" class="btn-close position-absolute end-0 top-0 m-3"
+                                data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h4 class="modal-title mb-4">Edit Project</h4>
+                            <form id="edit-project-form">
+                                <input type="hidden" id="edit-project-id">
+                                <div class="mb-3">
+                                    <label for="edit-project-name" class="form-label">Project Name</label>
+                                    <input type="text" class="form-control" id="edit-project-name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="edit-project-description" class="form-label">Project Description</label>
+                                    <textarea class="form-control" id="edit-project-description" rows="3"
+                                        required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="edit-project-due-date" class="form-label">Due Date</label>
+                                    <input type="date" class="form-control" id="edit-project-due-date" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="edit-project-status" class="form-label">Status</label>
+                                    <select class="form-select" id="edit-project-status" required>
+                                        <option value="Not Started">Not Started</option>
+                                        <option value="In Progress">In Progress</option>
+                                        <option value="Completed">Completed</option>
+                                        <option value="On Hold">On Hold</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="edit-project-team" class="form-label">Team</label>
+                                    <select class="form-select" id="edit-project-team" required>
+                                        <option value="">Select Team</option>
+                                        <option value="1">Team 1</option>
+                                        <option value="2">Team 2</option>
+                                        <option value="3">Team 3</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>document.write(new Date().getFullYear())</script> © Skote.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end d-none d-sm-block">
+                                Design & Develop by Simarpreet✨
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- end main content-->
+        <%- contentFor('js_page') %>
+            <!-- Required datatable js -->
+            <script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+
+            <!-- Responsive examples -->
+            <script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+            <script src="assets/js/pages/project-list.init.js"></script>
+            <!-- Add this line in your HTML file where you load scripts -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>

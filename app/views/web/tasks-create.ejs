@@ -1,0 +1,245 @@
+<%- contentFor('css_page') %>
+    <link href="assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="assets/libs/dropzone/dropzone.css" rel="stylesheet" type="text/css" />
+
+    <%- contentFor('body') %>
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-4">Create New Task</h4>
+                                    <form class="custom-validation" method="post" enctype="multipart/form-data">
+                                        <!-- Color Picker -->
+                                        <div class="form-group mb-3 row">
+                                            <label for="example-color-input"
+                                                class="col-md-2 col-form-label">Color</label>
+                                            <div class="col-md-10">
+                                                <input class="form-control form-control-color mw-100" type="color"
+                                                    value="#556ee6" id="example-color-input" name="color" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label for="taskAssignment" class="col-form-label col-lg-2">Task
+                                                Assignment</label>
+                                            <div class="col-lg-10">
+                                                <select id="taskAssignment" name="taskAssignment" class="form-select"
+                                                    required>
+                                                    <!-- <option value="">Select Task Assignment</option> -->
+                                                    <option value="project1">Project 1</option>
+                                                    <option value="project2">Project 2</option>
+                                                    <option value="project3">Project 3</option>
+                                                    <!-- Add more projects as needed -->
+                                                    <option value="Standalone">Standalone Task</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label for="taskname" class="col-form-label col-lg-2">Task Name</label>
+                                            <div class="col-lg-10">
+                                                <input id="taskname" name="taskname" type="text" class="form-control"
+                                                    placeholder="Enter Task Name" required>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Task Category and Status -->
+                                        <div class="form-group row mb-3">
+                                            <label class="col-md-2 col-form-label">Task Category</label>
+                                            <div class="col-md-4">
+                                                <select id="taskCategory" class="form-select" name="taskCategory"
+                                                    required>
+                                                    <!-- <option value="">Select a category</option> -->
+                                                    <option>UI/UX Design</option>
+                                                    <option>Website design</option>
+                                                    <option>App development</option>
+                                                    <option>Quality Assurance</option>
+                                                    <option>Development</option>
+                                                    <option>Backend Development</option>
+                                                    <option>Software Testing</option>
+                                                    <option>Website Design</option>
+                                                    <option>Marketing</option>
+                                                    <option>SEO</option>
+                                                    <option>Other</option>
+                                                </select>
+                                            </div>
+                                
+                                            <label for="status" class="col-md-2 col-form-label">Status</label>
+                                            <div class="col-md-4">
+                                                <select name="status" class="form-select" required>
+                                                    <!-- <option value="">Select status</option> -->
+                                                    <option value="In Progress">In Progress</option>
+                                                    <option value="Todo">Todo</option>
+                                                    <option value="Completed">Completed</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Priority and Time Estimate -->
+                                        <div class="form-group row mb-3">
+                                            <label class="col-md-2 col-form-label">Priority</label>
+                                            <div class="col-md-4">
+                                                <select id="priority" name="priority" class="form-select" required>
+                                                    <!-- <option value="">Select priority</option> -->
+                                                    <option>Urgent</option>
+                                                    <option>High</option>
+                                                    <option>Normal</option>
+                                                    <option>Low</option>
+                                                </select>
+                                            </div>
+                                            <label class="col-md-2 col-form-label">Time Estimate</label>
+                                            <div class="col-md-4">
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control" id="time_estimate"
+                                                        name="time_estimate" min="0.1" step="0.1" required>
+                                                    <select class="form-select" id="time_unit" name="time_unit">
+                                                        <option value="hours">Hours</option>
+                                                        <option value="minutes">Minutes</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="form-group mb-3" id="assignees-control">
+                                            <label for="assignees" class="col-form-label col-lg-2">Assignees</label>
+                                            <div class="col-lg-10">
+                                                <!-- Dynamic content will be added here based on selection -->
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+                                            <label class="col-md-2 col-form-label">Task Date</label>
+                                            <div class="col-md-4">
+                                                <div class="input-daterange input-group" data-provide="datepicker">
+                                                    <input type="text" class="form-control" placeholder="Start Date"
+                                                        name="start" required>
+                                                    <input type="text" class="form-control" placeholder="End Date"
+                                                        name="end" required>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row mb-3">
+                                            <label class="form-label col-lg-2">Attachments</label>
+                                            <div class="col-lg-10">
+                                                <div class="dropzone border rounded p-2">
+                                                    <div class="fallback">
+                                                        <input name="file" type="file" multiple="multiple"
+                                                            class="form-control">
+                                                    </div>
+                                                    <div
+                                                        class="dz-message needsclick text-center p-5 bg-light border rounded">
+                                                        <div class="mb-3">
+                                                            <i class="display-4 text-muted bx bxs-cloud-upload"></i>
+                                                        </div>
+                                                        <h5>Drop files here or click to upload.</h5>
+                                                    </div>
+                                                </div>
+
+                                                <ul class="list-unstyled mb-0 mt-3" id="dropzone-preview">
+                                                    <li class="mt-2" id="dropzone-preview-list">
+                                                        <!-- This is used as the file preview template -->
+                                                        <div class="border rounded">
+                                                            <div class="d-flex p-2">
+                                                                <div class="flex-shrink-0 me-3">
+                                                                    <div class="avatar-sm bg-light rounded">
+                                                                        <img data-dz-thumbnail
+                                                                            class="img-fluid rounded d-block"
+                                                                            src="assets\images\docpic.png"
+                                                                            alt="Dropzone-Image">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex-grow-1">
+                                                                    <div class="pt-1">
+                                                                        <h5 class="fs-md mb-1" data-dz-name>&nbsp;</h5>
+                                                                        <p class="fs-sm text-muted mb-0" data-dz-size>
+                                                                        </p>
+                                                                        <strong class="error text-danger"
+                                                                            data-dz-errormessage></strong>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex-shrink-0 ms-3">
+                                                                    <button data-dz-remove
+                                                                        class="btn btn-sm btn-danger">Delete</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <!-- Task Description -->
+                                        <div class="form-group row mb-3">
+                                            <label class="col-md-2 col-form-label">Task Description</label>
+                                            <div class="col-md-10">
+                                                <textarea class="form-control" id="taskDescription"
+                                                    name="taskDescription" rows="3" placeholder="Optional"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-center mt-4">
+                                            <button type="submit"
+                                                class="btn btn-primary btn-lg waves-effect waves-light">CREATE
+                                                TASK</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <%- contentFor('js_page') %>
+            <!-- bootstrap datepicker -->
+            <script src="assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
+
+
+            <!-- form repeater js -->
+            <!-- <script src="assets/libs/jquery.repeater/jquery.repeater.min.js"></script> -->
+
+            <script src="assets/js/pages/task-create.init.js"></script>
+
+            <script src="assets/libs/dropzone/dropzone-min.js"></script>
+
+            <!-- Form file upload init js -->
+            <script src="assets/js/pages/form-file-upload.init.js"></script>
+            <!-- form validation js -->
+            <script src="assets/js/pages/form-validation.init.js"></script>
+
+            <script>
+                $(document).ready(function () {
+                    // Initialize the date picker
+                    $('.input-daterange').datepicker({
+                        format: 'yyyy-mm-dd',
+                        autoclose: true
+                    }).on('changeDate', function (e) {
+                        // Trigger Parsley validation on date change
+                        $(e.target).parsley().validate();
+                    });
+
+                    // Initialize Parsley validation
+                    $('.custom-validation').parsley();
+                });
+            </script>
+            <script src="assets/libs/parsleyjs/parsley.min.js"></script>
+
+            <script src="assets/js/pages/form-validation.init.js"></script>
+
+            <script src="assets/js/pages/createtask.js"></script>

@@ -1,0 +1,79 @@
+[
+    {
+      "id": 1,
+      "projectLogoImg": "assets/images/companies/img-3.png",
+      "projectTitle": "Project Alpha",
+      "projectDesc": "Description for Project Alpha",
+      "dueDate": "2024-07-31",
+      "status": "Inprogress",
+      "assignedto": [
+        {
+          "assigneeName": "John Doe",
+          "assigneeImg": "assets/images/users/avatar-1.1.jpg"
+        },
+        {
+          "assigneeName": "Jane Smith",
+          "assigneeImg": "assets/images/users/avatar-1.jpg"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "projectLogoImg": "assets/images/companies/img-6.png",
+      "projectTitle": "Project Beta",
+      "projectDesc": "Description for Project Beta",
+      "dueDate": "2024-08-15",
+      "status": "Completed",
+      "assignedto": [
+        {
+          "assigneeName": "Alice Johnson",
+          "assigneeImg": "assets/images/users/avatar-2.jpg"
+        },
+        {
+          "assigneeName": "Bob Brown",
+          "assigneeImg": "assets/images/users/avatar-7.jpg"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "projectLogoImg": "assets/images/companies/img-3.png",
+      "projectTitle": "Project Gamma",
+      "projectDesc": "Description for Project Gamma",
+      "dueDate": "2024-09-10",
+      "status": "Delay",
+      "assignedto": [
+        {
+          "assigneeName": "Chris Green",
+          "assigneeImg": "assets/images/users/avatar-4.jpg"
+        },
+        {
+          "assigneeName": "Dana White",
+          "assigneeImg": "assets/images/users/avatar-5.jpg"
+        },
+        {
+          "assigneeName": "Evan Black",
+          "assigneeImg": "assets/images/users/avatar-6.jpg"
+        }
+      ]
+    },
+    {
+        "id": 4,
+        "projectLogoImg": "assets/images/companies/img-1.png",
+        "projectTitle": "Project Delta",
+        "projectDesc": "Description for Project Delta",
+        "dueDate": "2024-10-01",
+        "status": "Inprogress",
+        "assignedto": [
+            {
+                "assigneeName": "Michael Scott",
+                "assigneeImg": "assets/images/users/avatar-8.jpg"
+            },
+            {
+                "assigneeName": "Pam Beesly",
+                "assigneeImg": "assets/images/users/avatar-3.jpg"
+            }
+        ]
+    }
+]
+

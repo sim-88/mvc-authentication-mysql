@@ -1,0 +1,7 @@
+{
+    "db_mysql": {
+      "name": "customers",
+      "host": "localhost",
+      "port": 5984
+    }
+}
